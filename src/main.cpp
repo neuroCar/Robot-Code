@@ -258,6 +258,7 @@ void opcontrol() {
     // . . .
 
     descore.button_toggle(master.get_digital(DIGITAL_LEFT));
+    matchLoader.button_toggle(master.get_digital(DIGITAL_LEFT));
 
     if (master.get_digital(DIGITAL_R1)) {
       intake.move(200);
