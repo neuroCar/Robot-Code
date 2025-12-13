@@ -57,14 +57,35 @@ void drive_example() {
   // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
   // for slew, only enable it when the drive distance is greater than the slew distance + a few inches
 
-  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
+  intake.move(1200);
+  chassis.pid_drive_set(24_in, 45, true);
+  intake.move(1200);
+  chassis.pid_wait();
+  // intake.move(1200);
+  pros::delay(1500);
+
+  chassis.pid_turn_set(65_deg, DRIVE_SPEED);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-12_in, DRIVE_SPEED);
+  chassis.pid_drive_set(-30_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-12_in, DRIVE_SPEED);
+  chassis.pid_turn_set(150_deg, DRIVE_SPEED);
   chassis.pid_wait();
+
+  chassis.pid_drive_set(-13_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(-155_deg, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-8_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  pros::delay(500);
+  top.move(1200);
+  intake.move(1200);
+  pros::delay(5000);
 }
 
 ///
