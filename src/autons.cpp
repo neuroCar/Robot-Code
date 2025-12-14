@@ -57,35 +57,47 @@ void drive_example() {
   // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
   // for slew, only enable it when the drive distance is greater than the slew distance + a few inches
 
-  intake.move(1200);
-  chassis.pid_drive_set(24_in, 45, true);
-  intake.move(1200);
+  // intake.move(1200);
+  chassis.pid_drive_set(32.50_in, 45, true);
+  // intake.move(1200);
   chassis.pid_wait();
   // intake.move(1200);
-  pros::delay(1500);
+  // pros::delay(1500);
 
-  chassis.pid_turn_set(65_deg, DRIVE_SPEED);
+  matchLoader.set(true);
+
+  chassis.pid_turn_set(90_deg, DRIVE_SPEED);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-30_in, DRIVE_SPEED, true);
+  intake.move(200);
+
+  chassis.pid_drive_set(10_in, 45, true);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(150_deg, DRIVE_SPEED);
+  chassis.pid_drive_set(-40_in, 45, true);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-13_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
+  intake.move(127);
 
-  chassis.pid_turn_set(-155_deg, DRIVE_SPEED);
-  chassis.pid_wait();
+  // chassis.pid_drive_set(-30_in, DRIVE_SPEED, true);
+  // chassis.pid_wait();
 
-  chassis.pid_drive_set(-8_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
+  // chassis.pid_turn_set(150_deg, DRIVE_SPEED);
+  // chassis.pid_wait();
 
-  pros::delay(500);
-  top.move(1200);
-  intake.move(1200);
-  pros::delay(5000);
+  // chassis.pid_drive_set(-13_in, DRIVE_SPEED, true);
+  // chassis.pid_wait();
+
+  // chassis.pid_turn_set(-155_deg, DRIVE_SPEED);
+  // chassis.pid_wait();
+
+  // chassis.pid_drive_set(-8_in, DRIVE_SPEED, true);
+  // chassis.pid_wait();
+
+  // pros::delay(500);
+  // top.move(1200);
+  // intake.move(1200);
+  // pros::delay(5000);
 }
 
 ///
@@ -94,15 +106,24 @@ void drive_example() {
 void turn_example() {
   // The first parameter is the target in degrees
   // The second parameter is max speed the robot will drive at
-
-  chassis.pid_turn_set(90_deg, TURN_SPEED);
+  chassis.pid_drive_set(32.50_in, 45, true);
+  
   chassis.pid_wait();
 
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
+  matchLoader.set(true);
+
+  chassis.pid_turn_set(90_deg, DRIVE_SPEED);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
+  intake.move(200);
+
+  chassis.pid_drive_set(10_in, 45, true);
   chassis.pid_wait();
+
+  chassis.pid_drive_set(-37_in, 45, true);
+  chassis.pid_wait();
+
+  intake.move(400);
 }
 
 ///
