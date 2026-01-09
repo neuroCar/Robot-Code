@@ -59,7 +59,7 @@ void initialize() {
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
       {"Skills\n\nSkills Autos", drive_example},
-      {"Turn\n\nTurn 3 times.", turn_example},
+      {"Match\n\nMatch Autos.", turn_example},
       {"Drive and Turn\n\nDrive forward, turn, come back", drive_and_turn},
       {"Drive and Turn\n\nSlow down during drive", wait_until_change_speed},
       {"Swing Turn\n\nSwing in an 'S' curve", swing_example},
