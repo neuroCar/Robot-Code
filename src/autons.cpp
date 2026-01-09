@@ -92,6 +92,7 @@ void turn_example() {
   chassis.pid_wait();
 
   intake.move(400);
+  pros::delay(5000);
 }
 
 ///
