@@ -52,17 +52,8 @@ void default_constants() {
 // Skills Auto
 ///
 void drive_example() {
-  // The first parameter is target inches
-  // The second parameter is max speed the robot will drive at
-  // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
-  // for slew, only enable it when the drive distance is greater than the slew distance + a few inches
-
-  // intake.move(1200);
   chassis.pid_drive_set(32.50_in, 45, true);
-  // intake.move(1200);
   chassis.pid_wait();
-  // intake.move(1200);
-  // pros::delay(1500);
 
   matchLoader.set(true);
 
