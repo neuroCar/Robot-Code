@@ -49,7 +49,7 @@ void default_constants() {
 }
 
 ///
-// Drive Example
+// Skills Auto
 ///
 void drive_example() {
   // The first parameter is target inches
@@ -78,36 +78,13 @@ void drive_example() {
   chassis.pid_wait();
 
   intake.move(127);
-
-  // chassis.pid_drive_set(-30_in, DRIVE_SPEED, true);
-  // chassis.pid_wait();
-
-  // chassis.pid_turn_set(150_deg, DRIVE_SPEED);
-  // chassis.pid_wait();
-
-  // chassis.pid_drive_set(-13_in, DRIVE_SPEED, true);
-  // chassis.pid_wait();
-
-  // chassis.pid_turn_set(-155_deg, DRIVE_SPEED);
-  // chassis.pid_wait();
-
-  // chassis.pid_drive_set(-8_in, DRIVE_SPEED, true);
-  // chassis.pid_wait();
-
-  // pros::delay(500);
-  // top.move(1200);
-  // intake.move(1200);
-  // pros::delay(5000);
 }
 
 ///
-// Turn Example
+// Match Autos
 ///
 void turn_example() {
-  // The first parameter is the target in degrees
-  // The second parameter is max speed the robot will drive at
   chassis.pid_drive_set(32.50_in, 45, true);
-  
   chassis.pid_wait();
 
   matchLoader.set(true);
