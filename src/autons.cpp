@@ -52,30 +52,60 @@ void default_constants() {
 // Skills Auto
 ///
 void drive_example() {
-  chassis.pid_drive_set(32.50_in, 45, true);
+  // Drive towards loader
+  chassis.pid_drive_set(32.50_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   matchLoader.set(true);
 
-  chassis.pid_turn_set(90_deg, DRIVE_SPEED);
+  // Turn and empty
+  chassis.pid_turn_set(90_deg, TURN_SPEED);
   chassis.pid_wait();
 
-  intake.move(200);
-
-  chassis.pid_drive_set(10_in, 45, true);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(-40_in, 45, true);
-  chassis.pid_wait();
-
+  // Toss blocks
   intake.move(127);
+  top.move(127);
+
+  matchLoader.set(false);
+
+  chassis.pid_drive_set(20_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  // // Move across the field
+  // chassis.pid_turn_set(270_deg, TURN_SPEED);
+  // chassis.pid_wait();
+
+  // chassis.pid_drive_set(112_in, DRIVE_SPEED, true);
+  // chassis.pid_wait();
+
+  // chassis.pid_turn_set(90_deg, TURN_SPEED);
+  // chassis.pid_wait();
+
+  // // Empty other matchloader
+  // matchLoader.set(true);
+
+  // chassis.pid_drive_set(20_in, DRIVE_SPEED, true);
+  // chassis.pid_wait();
+
+  // // Go to park
+  // matchLoader.set(false);
+
+  // chassis.pid_turn_set(90_deg, TURN_SPEED, true);
+  // chassis.pid_wait();
+
+  // intake.move(-127);
+
+  // chassis.pid_drive_set(56_in, DRIVE_SPEED, true);
+  // chassis.pid_wait();
+
+  pros::delay(20000);
 }
 
 ///
 // Match Autos
 ///
 void turn_example() {
-  chassis.pid_drive_set(32.50_in, 45, true);
+  chassis.pid_drive_set(30_in, 45, true);
   chassis.pid_wait();
 
   matchLoader.set(true);
@@ -83,15 +113,21 @@ void turn_example() {
   chassis.pid_turn_set(90_deg, DRIVE_SPEED);
   chassis.pid_wait();
 
+  pros::delay(7000);
+
   intake.move(200);
 
   chassis.pid_drive_set(10_in, 45, true);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-37_in, 45, true);
+  chassis.pid_drive_set(-33_in, 45, true);
   chassis.pid_wait();
 
-  intake.move(400);
+  chassis.pid_drive_set(3_in, 45, true);
+  chassis.pid_wait();
+
+  intake.move(127);
+  top.move(127);
   pros::delay(5000);
 }
 
