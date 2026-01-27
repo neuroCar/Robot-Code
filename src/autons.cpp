@@ -52,24 +52,29 @@ void default_constants() {
 // Skills Auto
 ///
 void drive_example() {
-  // Drive towards loader
-  chassis.pid_drive_set(32.50_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  matchLoader.set(true);
-
-  // Turn and empty
-  chassis.pid_turn_set(90_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  // Toss blocks
   intake.move(127);
   top.move(127);
-
-  matchLoader.set(false);
-
-  chassis.pid_drive_set(20_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(9_in, DRIVE_SPEED, true);
   chassis.pid_wait();
+
+  // Drive towards loader
+  // chassis.pid_drive_set(32.50_in, DRIVE_SPEED, true);
+  // chassis.pid_wait();
+
+  // matchLoader.set(true);
+
+  // // Turn and empty
+  // chassis.pid_turn_set(90_deg, TURN_SPEED);
+  // chassis.pid_wait();
+
+  // // Toss blocks
+  // intake.move(127);
+  // top.move(127);
+
+  // matchLoader.set(false);
+
+  // chassis.pid_drive_set(20_in, DRIVE_SPEED, true);
+  // chassis.pid_wait();
 
   // // Move across the field
   // chassis.pid_turn_set(270_deg, TURN_SPEED);
@@ -105,7 +110,7 @@ void drive_example() {
 // Match Autos
 ///
 void turn_example() {
-  chassis.pid_drive_set(30_in, 45, true);
+  chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   matchLoader.set(true);
@@ -117,13 +122,13 @@ void turn_example() {
 
   intake.move(200);
 
-  chassis.pid_drive_set(10_in, 45, true);
+  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-33_in, 45, true);
+  chassis.pid_drive_set(-33_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(3_in, 45, true);
+  chassis.pid_drive_set(3_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   intake.move(127);
