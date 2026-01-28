@@ -110,29 +110,27 @@ void drive_example() {
 // Match Autos
 ///
 void turn_example() {
-  chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
+  intake.move(127);
+
+  chassis.pid_drive_set(48_in, DRIVE_SPEED, true);
   chassis.pid_wait();
+
+  // pros::delay(1000);
 
   matchLoader.set(true);
 
-  chassis.pid_turn_set(90_deg, DRIVE_SPEED);
+  chassis.pid_drive_set(-20_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  pros::delay(7000);
-
-  intake.move(200);
-
-  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+  chassis.pid_turn_set(90_deg, TURN_SPEED);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-33_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(20_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(3_in, DRIVE_SPEED, true);
+  chassis.pid_turn_set(90_deg, TURN_SPEED);
   chassis.pid_wait();
 
-  intake.move(127);
-  top.move(127);
   pros::delay(5000);
 }
 
