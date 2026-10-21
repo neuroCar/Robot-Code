@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "code",
+    "project_name": "2790A CODE",
     "target": "v5",
     "templates": {
       "EZ-Template": {
@@ -424,7 +424,7 @@
       }
     },
     "upload_options": {
-      "description": "code",
+      "description": "2790A",
       "icon": "pizza"
     },
     "use_early_access": false

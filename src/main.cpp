@@ -8,12 +8,12 @@
 // Chassis constructor
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
-    {-20, -18, -17},     // Left Chassis Ports (negative port will reverse it!)
+    {-8, -9, -10},     // Left Chassis Ports (negative port will reverse it!)
     {1, 2, 3},  // Right Chassis Ports (negative port will reverse it!)
 
-    15,      // IMU Port
-    3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
-    360);   // Wheel RPM = cartridge * (motor gear / wheel gear)
+    6,      // IMU Port
+    2.75,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
+    450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
 // Uncomment the trackers you're using here!
 // - `8` and `9` are smart ports (making these negative will reverse the sensor)
@@ -256,25 +256,14 @@ void opcontrol() {
     // . . .
     // Put more user control code here!
     // . . .
-
-    descore.button_toggle(master.get_digital(DIGITAL_LEFT));
-    matchLoader.button_toggle(master.get_digital(DIGITAL_DOWN));
-
-    if (master.get_digital(DIGITAL_R1)) {
-      intake.move(200);
-    } else if (master.get_digital(DIGITAL_R2)) {
-      intake.move(-200);
+    
+    if (master.get_digital(DIGITAL_A)) {
+      lift.move(127);
+    } else if (master.get_digital(DIGITAL_B)) {
+      lift.move(-127);
     } else {
-      intake.move(0);
-      intake.brake();
-    }
-    if (master.get_digital(DIGITAL_L1)) {
-      top.move(127);
-    } else if (master.get_digital(DIGITAL_L2)) {
-      top.move(-127);
-    } else {
-      top.move(0);
-      top.brake();
+      lift.move(0);
+      lift.brake();
     }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
