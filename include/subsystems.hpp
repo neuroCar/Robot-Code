@@ -7,4 +7,4 @@ extern Drive chassis;
 
 // Your motors, sensors, etc. should go here.  Below are examples
 
-inline pros::MotorGroup lift({4, 5});
+inline pros::MotorGroup lift({8, 9});
