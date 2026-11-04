@@ -58,8 +58,9 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-      {"Match\n\nMatch Autos", turn_example},
-      {"Skills\n\nSkills Autos.", drive_example},
+      {"Match\n\nMatch Autos", match},
+      {"Skills\n\nSkills Autos.", skills},
+      {"Testing\n\nTests for Autos", testing},
       {"Drive and Turn\n\nDrive forward, turn, come back", drive_and_turn},
       {"Drive and Turn\n\nSlow down during drive", wait_until_change_speed},
       {"Swing Turn\n\nSwing in an 'S' curve", swing_example},
@@ -78,6 +79,8 @@ void initialize() {
   chassis.initialize();
   ez::as::initialize();
   master.rumble(chassis.drive_imu_calibrated() ? "." : "---");
+  lift.set_brake_mode(MOTOR_BRAKE_HOLD);
+  claw.set(true);
 }
 
 /**
@@ -257,13 +260,24 @@ void opcontrol() {
     // Put more user control code here!
     // . . .
     
-    if (master.get_digital(DIGITAL_A)) {
+    claw.button_toggle(master.get_digital(DIGITAL_A));
+
+    if (master.get_digital(DIGITAL_R1)) {
       lift.move(127);
-    } else if (master.get_digital(DIGITAL_B)) {
+    } else if (master.get_digital(DIGITAL_R2)) {
       lift.move(-127);
     } else {
       lift.move(0);
       lift.brake();
+    }
+
+    if (master.get_digital(DIGITAL_L2)) {
+      toggle.move(127);
+    } else if (master.get_digital(DIGITAL_L1)) {
+      toggle.move(-127);
+    } else {
+      toggle.move(0);
+      toggle.brake();
     }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME

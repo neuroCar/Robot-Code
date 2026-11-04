@@ -7,4 +7,14 @@ extern Drive chassis;
 
 // Your motors, sensors, etc. should go here.  Below are examples
 
-inline pros::MotorGroup lift({8, 9});
+inline pros::MotorGroup lift({8, -6});
+inline ez::Piston claw('A');
+inline pros::Motor toggle(13);
+inline double LiftLevels[] = {
+    0.00,
+    720.00,
+    1400.00,
+    1440.00,
+    2180.00,
+    2220.00
+};
