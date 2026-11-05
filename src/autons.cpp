@@ -548,13 +548,13 @@ void testing() {
 	lift.move_absolute(LiftLevels[0], TURN_SPEED);
 	pros::delay(500);
 	lift.move_relative(LiftLevels[1], TURN_SPEED);
-	toggle.move_relative(-1600, TURN_SPEED);
+	toggle.move_relative(-1800, TURN_SPEED);
 	pros::delay(1000);
 
 	///
 	// Preload
 	///
-	chassis.pid_turn_relative_set(22_deg, TURN_SPEED);
+	chassis.pid_turn_relative_set(20_deg, TURN_SPEED);
 	chassis.pid_drive_set(-26_in, DRIVE_SPEED, true);
 	chassis.pid_wait_until(-13_in);
 	chassis.pid_speed_max_set(30);
@@ -586,12 +586,12 @@ void testing() {
 	chassis.pid_speed_max_set(30);
 	chassis.pid_wait();
 
-	chassis.pid_turn_relative_set(50_deg, TURN_SPEED);
+	chassis.pid_turn_relative_set(47_deg, TURN_SPEED);
 	chassis.pid_wait();
 
 	chassis.pid_drive_set(-5.5_in, DRIVE_SPEED, true);
 	chassis.pid_wait_until(-2.75_in);
-	chassis.pid_speed_max_set(30);
+	chassis.pid_speed_max_set(15);
 	chassis.pid_wait();
 
 	claw.set(true);
@@ -613,6 +613,51 @@ void testing() {
 
 	claw.set(false);
 	lift.move_absolute(0, TURN_SPEED);
+	pros::delay(1000);
+
+	chassis.pid_drive_set(14_in, DRIVE_SPEED, true);
+	chassis.pid_wait_until(7_in);
+	chassis.pid_speed_max_set(30);
+	chassis.pid_wait();
+
+	chassis.pid_turn_relative_set(-50_deg, TURN_SPEED);
+	chassis.pid_wait();
+
+	chassis.pid_drive_set(-11_in, DRIVE_SPEED, true);
+	chassis.pid_wait_until(-5.5_in);
+	chassis.pid_speed_max_set(30);
+	chassis.pid_wait();
+
+	claw.set(true);
+	pros::delay(500);
+	claw.set(false);
+	pros::delay(500);
+
+	chassis.pid_drive_set(-12_in, DRIVE_SPEED, true);
+	chassis.pid_wait_until(-6_in);
+	chassis.pid_speed_max_set(15);
+	chassis.pid_wait();
+
+	claw.set(true);
+	lift.move_relative(LiftLevels[1], TURN_SPEED);
+
+	chassis.pid_drive_set(-7_in, DRIVE_SPEED, true);
+	chassis.pid_wait_until(-3.5_in);
+	chassis.pid_speed_max_set(30);
+	chassis.pid_wait();
+
+	chassis.pid_turn_relative_set(130_deg, 30);
+	chassis.pid_wait();
+
+	lift.move_absolute(LiftLevels[4], TURN_SPEED);
+	pros::delay(500);
+
+	chassis.pid_drive_set(-24_in, DRIVE_SPEED, true);
+	chassis.pid_wait_until(-12_in);
+	chassis.pid_speed_max_set(30);
+	chassis.pid_wait();
+
+	claw.set(false);
 
 	pros::delay(10000);
 }

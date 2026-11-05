@@ -12,7 +12,7 @@ inline ez::Piston claw('A');
 inline pros::Motor toggle(13);
 inline double LiftLevels[] = {
     0.00,
-    720.00,
+    900.00,
     1400.00,
     1440.00,
     2180.00,

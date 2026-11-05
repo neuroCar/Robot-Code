@@ -5,6 +5,8 @@
 // https://ez-robotics.github.io/EZ-Template/
 /////
 
+int level = 1;
+
 // Chassis constructor
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
@@ -260,24 +262,23 @@ void opcontrol() {
     // Put more user control code here!
     // . . .
     
-    claw.button_toggle(master.get_digital(DIGITAL_A));
+    claw.button_toggle(master.get_digital(DIGITAL_L2));
 
     if (master.get_digital(DIGITAL_R1)) {
       lift.move(127);
-    } else if (master.get_digital(DIGITAL_R2)) {
+    } else if (master.get_digital(DIGITAL_R2) && (lift.get_position() != 0)) {
       lift.move(-127);
     } else {
       lift.move(0);
       lift.brake();
     }
 
-    if (master.get_digital(DIGITAL_L2)) {
-      toggle.move(127);
-    } else if (master.get_digital(DIGITAL_L1)) {
-      toggle.move(-127);
-    } else {
-      toggle.move(0);
-      toggle.brake();
+    if (master.get_digital_new_press(DIGITAL_A)) {
+      lift.move_absolute(LiftLevels[level], 90);
+      ++level;
+    } else if (master.get_digital_new_press(DIGITAL_B)) {
+      level = 0;
+      lift.move_absolute(LiftLevels[0], 90);
     }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
