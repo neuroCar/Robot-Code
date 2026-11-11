@@ -8,6 +8,7 @@
 // These are out of 127
 const int DRIVE_SPEED = 60;
 const int TURN_SPEED = 90;
+const int LIFT_SPEED = 127;
 const int SWING_SPEED = 110;
 
 ///
@@ -545,9 +546,9 @@ void match() {
 }
 
 void testing() {
-	lift.move_absolute(LiftLevels[0], TURN_SPEED);
+	lift.move_absolute(LiftLevels[0], LIFT_SPEED);
 	pros::delay(500);
-	lift.move_relative(LiftLevels[1], TURN_SPEED);
+	lift.move_relative(LiftLevels[1], LIFT_SPEED);
 	toggle.move_relative(-1800, TURN_SPEED);
 	pros::delay(1000);
 
@@ -563,10 +564,10 @@ void testing() {
 	///
 	// Pin drop off
 	///
-	lift.move_absolute(LiftLevels[0], TURN_SPEED);
-	pros::delay(500);
+	lift.move_absolute(LiftLevels[0], LIFT_SPEED);
+	// pros::delay(500);
 	claw.set(false);
-	pros::delay(1000);
+	pros::delay(250);
 
 	chassis.pid_drive_set(8_in, DRIVE_SPEED, true);
 	chassis.pid_wait_until(4_in);
@@ -595,7 +596,7 @@ void testing() {
 	chassis.pid_wait();
 
 	claw.set(true);
-	lift.move_absolute(LiftLevels[2], TURN_SPEED);
+	lift.move_absolute(LiftLevels[2], LIFT_SPEED);
 	pros::delay(500);
 
 	chassis.pid_drive_set(-10_in, DRIVE_SPEED, true);
@@ -611,8 +612,8 @@ void testing() {
 	chassis.pid_speed_max_set(30);
 	chassis.pid_wait();
 
+	lift.move_absolute(LiftLevels[0], LIFT_SPEED);
 	claw.set(false);
-	lift.move_absolute(0, TURN_SPEED);
 	pros::delay(1000);
 
 	chassis.pid_drive_set(14_in, DRIVE_SPEED, true);
@@ -629,9 +630,7 @@ void testing() {
 	chassis.pid_wait();
 
 	claw.set(true);
-	pros::delay(500);
 	claw.set(false);
-	pros::delay(500);
 
 	chassis.pid_drive_set(-12_in, DRIVE_SPEED, true);
 	chassis.pid_wait_until(-6_in);
@@ -639,7 +638,7 @@ void testing() {
 	chassis.pid_wait();
 
 	claw.set(true);
-	lift.move_relative(LiftLevels[1], TURN_SPEED);
+	lift.move_relative(LiftLevels[1], LIFT_SPEED);
 
 	chassis.pid_drive_set(-7_in, DRIVE_SPEED, true);
 	chassis.pid_wait_until(-3.5_in);
@@ -649,7 +648,7 @@ void testing() {
 	chassis.pid_turn_relative_set(130_deg, 30);
 	chassis.pid_wait();
 
-	lift.move_absolute(LiftLevels[4], TURN_SPEED);
+	lift.move_absolute(LiftLevels[3], LIFT_SPEED);
 	pros::delay(500);
 
 	chassis.pid_drive_set(-24_in, DRIVE_SPEED, true);
@@ -657,6 +656,7 @@ void testing() {
 	chassis.pid_speed_max_set(30);
 	chassis.pid_wait();
 
+	lift.move_absolute(LiftLevels[0], LIFT_SPEED);
 	claw.set(false);
 
 	pros::delay(10000);
