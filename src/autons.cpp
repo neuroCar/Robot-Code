@@ -16,7 +16,7 @@ const int SWING_SPEED = 110;
 ///
 void default_constants() {
 	// P, I, D, and Start I
-	chassis.pid_drive_constants_set(20.0, 0.0, 100.0);         // Fwd/rev constants, used for odom and non odom motions
+	chassis.pid_drive_constants_set(20.9, 1.2, 100.0);         // Fwd/rev constants, used for odom and non odom motions
 	chassis.pid_heading_constants_set(11.0, 0.0, 20.0);        // Holds the robot straight while going forward without odom
 	chassis.pid_turn_constants_set(3.0, 0.05, 20.0, 15.0);     // Turn in place constants
 	chassis.pid_swing_constants_set(6.0, 0.0, 65.0);           // Swing constants
@@ -53,6 +53,7 @@ void default_constants() {
 // Skills Auto
 ///
 void drive_example() {
+
 	pros::delay(7000);
 	return;
 }
@@ -69,7 +70,8 @@ void turn_example() {
 // Combining Turn + Drive
 ///
 void drive_and_turn() {
-	chassis.pid_drive_set(6_in, DRIVE_SPEED, true);
+	// Turn to Heading + 45deg
+	chassis.pid_swing_relative_set(ez::RIGHT_SWING, 90_deg, SWING_SPEED);
 	chassis.pid_wait();
 }
 
@@ -355,7 +357,7 @@ void skills() {
 	///
 	// Preload
 	///
-	chassis.pid_turn_relative_set(22_deg, TURN_SPEED);
+	chassis.pid_turn_relative_set(18_deg, TURN_SPEED);
 	chassis.pid_drive_set(-26_in, DRIVE_SPEED, true);
 	chassis.pid_wait_until(-13_in);
 	chassis.pid_speed_max_set(30);
@@ -433,7 +435,7 @@ void skills() {
 		chassis.pid_speed_max_set(30);
 		chassis.pid_wait();
 
-		chassis.pid_turn_relative_set(-220_deg, TURN_SPEED);
+		chassis.pid_turn_relative_set(-215_deg, TURN_SPEED);
 		chassis.pid_wait();
 
 		chassis.pid_drive_set(-19.5_in, DRIVE_SPEED, true);
@@ -441,7 +443,7 @@ void skills() {
 		chassis.pid_speed_max_set(30);
 		chassis.pid_wait();
 
-		chassis.pid_turn_relative_set(35_deg, TURN_SPEED);
+		chassis.pid_turn_relative_set(33_deg, TURN_SPEED);
 		chassis.pid_wait();
 
 		chassis.pid_drive_set(-5_in, DRIVE_SPEED, true);
@@ -502,50 +504,6 @@ void skills() {
 }
 
 void match() {
-	lift.move_absolute(LiftLevels[0], TURN_SPEED);
-	pros::delay(500);
-	lift.move_relative(LiftLevels[1], TURN_SPEED);
-	toggle.move_relative(-1600, TURN_SPEED);
-	pros::delay(1000);
-
-	///
-	// Preload
-	///
-	chassis.pid_turn_relative_set(22_deg, TURN_SPEED);
-	chassis.pid_drive_set(-26_in, DRIVE_SPEED, true);
-	chassis.pid_wait_until(-13_in);
-	chassis.pid_speed_max_set(30);
-	chassis.pid_wait();
-
-	///
-	// Pin drop off
-	///
-	lift.move_absolute(LiftLevels[0], TURN_SPEED);
-	pros::delay(500);
-	claw.set(false);
-	pros::delay(1000);
-
-	chassis.pid_drive_set(8_in, DRIVE_SPEED, true);
-	chassis.pid_wait_until(4_in);
-	chassis.pid_speed_max_set(30);
-	chassis.pid_wait();
-
-	chassis.pid_turn_relative_set(-40_deg, TURN_SPEED);
-	chassis.pid_wait();
-
-	claw.set(true);
-	chassis.pid_drive_set(-5_in, DRIVE_SPEED, true);
-	chassis.pid_wait();
-
-	claw.set(false);
-	chassis.pid_drive_set(-20_in, DRIVE_SPEED, true);
-	chassis.pid_wait_until(-10_in);
-	chassis.pid_speed_max_set(30);
-	chassis.pid_wait();
-	pros::delay(10000);
-}
-
-void testing() {
 	lift.move_absolute(LiftLevels[0], LIFT_SPEED);
 	pros::delay(500);
 	lift.move_relative(LiftLevels[1], LIFT_SPEED);
@@ -660,4 +618,8 @@ void testing() {
 	claw.set(false);
 
 	pros::delay(10000);
+}
+
+void testing() {
+	
 }
